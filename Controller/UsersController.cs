@@ -97,9 +97,9 @@ namespace Library_Management_System.Controller
         }
 
         [HttpGet("Loans_History")]
-        public IActionResult GetLoanHistory(int userId)
+        public async Task<ActionResult<IEnumerable<Loans>>> GetLoanHistory(int userId)
         {
-            var loans = _mapper.Map<LoansDTO>(_loansRepository.GetLoansByUser(userId));
+            var loans = _loansRepository.GetLoansByUser(userId);
             if (loans == null)
                 return NotFound();
             return Ok(loans);

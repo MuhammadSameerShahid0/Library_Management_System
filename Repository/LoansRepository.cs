@@ -29,9 +29,9 @@ namespace Library_Management_System.Repositories
         {
            return _context.Loans.FirstOrDefault(l => l.LoanID == loanId);
         }
-        public Loans GetLoansByUser(int userId)
+        public IEnumerable<Loans> GetLoansByUser(int userId)
         {
-            return _context.Loans.Where(u => u.UserID == userId).FirstOrDefault();
+            return _context.Loans.Where(u => u.UserID == userId).ToList();
         }
 
         public async Task<Loans> UpdateLoan(Loans loan)
