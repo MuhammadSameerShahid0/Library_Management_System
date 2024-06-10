@@ -29,11 +29,11 @@ internal class Program
 
         builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         //builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
-        builder.Services.AddSingleton<IUserRepository, UserRepository>();
-        builder.Services.AddSingleton<IBooksRepository, BooksRepository>();
-        builder.Services.AddSingleton<ILoansRepository, LoanRepository>();
-        builder.Services.AddSingleton<IAuthorRepository, AuthorRepository>();
-        builder.Services.AddSingleton<IBookAuthorRepository, BookAuthorRepository>();
+        builder.Services.AddScoped<IUserRepository, UserRepository>();
+        builder.Services.AddScoped<IBooksRepository, BooksRepository>();
+        builder.Services.AddScoped<ILoansRepository, LoanRepository>();
+        builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+        builder.Services.AddScoped<IBookAuthorRepository, BookAuthorRepository>();
        
         var app = builder.Build();
 

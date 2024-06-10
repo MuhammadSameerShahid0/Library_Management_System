@@ -12,10 +12,11 @@ namespace Library_Management_System.Repository
         {
             _context = context;
         }
-        public async void AddAuthor(Authors author)
+        public async Task<Authors> AddAuthor(Authors authors)
         {
-            _context.Authors.Add(author);
+            _context.Authors.Add(authors);
             await _context.SaveChangesAsync();
+            return authors;
         }
         public async Task<Authors> DeleteAuthor(Authors author)
         {
