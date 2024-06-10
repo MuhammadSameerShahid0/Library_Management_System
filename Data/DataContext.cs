@@ -28,7 +28,7 @@ namespace Library_Management_System.Data
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<BookAuthor>()
-                .HasOne(ba => ba.Author)
+                .HasOne(ba => ba.Authors)
                 .WithMany(a => a.BookAuthors)
                 .HasForeignKey(ba => ba.AuthorId)
                 .OnDelete(DeleteBehavior.Restrict);
