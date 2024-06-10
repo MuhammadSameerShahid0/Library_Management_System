@@ -79,7 +79,7 @@ namespace Library_Management_System.Controller
             };
 
             _loansRepository.AddLoan(loan);
-            return Ok();
+            return Ok(loan);
         }
 
         [HttpPost("Return_Book")]
@@ -93,7 +93,7 @@ namespace Library_Management_System.Controller
 
             loan.ReturnDate = DateTime.Now;
             _loansRepository.UpdateLoan(loan);
-            return Ok();
+            return Ok(loan);
         }
 
         [HttpGet("Loans_History")]
