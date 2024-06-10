@@ -7,7 +7,7 @@ namespace Library_Management_System.Interfaces
         Task<Loans> AddLoan(Loans loan);
         Loans GetLoan(int loanId);
         IEnumerable<Loans> GetAllLoans();
-        Loans GetLoansByUser(int userId);
+        IEnumerable<Loans> GetLoansByUser(int userId);
         Task<Loans> UpdateLoan(Loans loan);
     }
 }
