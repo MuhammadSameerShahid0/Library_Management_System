@@ -77,16 +77,24 @@ namespace Library_Management_System.Controller
             {
                 return NotFound();
             }
-            return Ok();
+            return Ok(BookToDelete);
         }
 
         //Librarians Add Author
         [HttpPost("Add_Author")]
-        public ActionResult AddAuthor(AuthorDTO authorDto)
+        public async Task<ActionResult<AuthorDTO>> AddAuthor(AuthorDTO authorDto)
         {
-            var author = _mapper.Map<Authors>(authorDto);
-            _authorRepository.AddAuthor(author);
-            return CreatedAtAction(nameof(AddAuthor), new { id = author.AuthorId }, authorDto);
+            try
+            {
+                var loans = _mapper.Map<Authors>(authorDto);
+                var CreatedLoan = await _authorRepository.AddAuthor(loans);
+                var createdLoanDto = _mapper.Map<AuthorDTO>(CreatedLoan);
+                return Ok(createdLoanDto);
+            }
+            catch (Exception ex)
+        {
+                return BadRequest(ex.Message);
+            }
         }
 
         //Librarians Edit Author
@@ -103,7 +111,7 @@ namespace Library_Management_System.Controller
         }
 
         //Librarians Delete Author
-        [HttpDelete("authors")]
+        [HttpDelete("Delete_Authors")]
         public async Task<ActionResult<AuthorDTO>> DeleteAuthor(int authorid)
         {
             var AuthorToDelete = _authorRepository.GetAuthor(authorid);
@@ -112,7 +120,7 @@ namespace Library_Management_System.Controller
             {
                 return NotFound();
             }
-            return Ok();
+            return Ok(AuthorToDelete);
         }
     }
 }
