@@ -79,7 +79,7 @@ namespace Library_Management_System.Controller
             };
 
             _loansRepository.AddLoan(loan);
-            return Ok(loan);
+            return Ok();
         }
 
         [HttpPost("Return_Book")]
